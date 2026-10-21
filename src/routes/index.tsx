@@ -247,7 +247,6 @@ function Index() {
             <a href="#categorias">Categorias</a><a href="#localizacao">Como Chegar</a>
           </nav>
           <div className="flex flex-col gap-2 opacity-90">
-            <span>Política de Privacidade</span><span>Política de Entrega e Trocas</span>
             <span className="text-xs opacity-70">Em caso de persistência dos sintomas, um médico deverá ser consultado.</span>
           </div>
         </div>
