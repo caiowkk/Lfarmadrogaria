@@ -266,6 +266,7 @@ function Index() {
               src={`https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`}
               className="h-72 w-full rounded-2xl border md:h-full md:min-h-80" />
             <div className="space-y-4">
+              <img src={loja.url} alt="Interior da Drogaria LFarma no Vassoural" width={824} height={646} loading="lazy" className="w-full rounded-2xl object-cover shadow-card" />
               <p className="flex gap-3"><MapPin className="h-6 w-6 shrink-0 text-primary" /><span><b>Rua Rui Limeira Rosal, 14</b><br />Vassoural, Caruaru - PE · CEP 55030-640<br /><span className="text-sm text-muted-foreground">♿ Acesso para cadeirantes</span></span></p>
               <p className="flex gap-3"><Clock className="h-6 w-6 shrink-0 text-primary" /><span><b>Todos os dias</b><br />07:00 às 22:00</span></p>
               <p className="flex gap-3"><Phone className="h-6 w-6 shrink-0 text-primary" /><a href="tel:+5581992098314" className="font-bold">(81) 99209-8314</a></p>
