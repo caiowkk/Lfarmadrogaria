@@ -4,7 +4,7 @@ import {
   Search, MessageCircle, Clock, MapPin, Phone, Star, Truck, Accessibility, CreditCard, Zap,
   Pill, Droplets, Sparkles, Baby, Cross, ChevronLeft, ChevronRight, Navigation, Tag,
 } from "lucide-react";
-import hero from "@/assets/hero.jpg";
+import loja from "@/assets/loja-lfarma.jpg.asset.json";
 
 const PHONE = "5581992098314";
 const DEFAULT_MSG = "Olá! Vim pelo site da LFarma e gostaria de tirar uma dúvida/fazer um pedido.";
@@ -130,11 +130,11 @@ function Index() {
       <main>
         {/* HERO */}
         <section className="relative overflow-hidden bg-hero text-primary-foreground">
-          <img src={hero} alt="" width={1280} height={800} className="absolute inset-0 h-full w-full object-cover opacity-15" />
+          <img src={loja.url} alt="" width={824} height={646} className="absolute inset-0 h-full w-full object-cover opacity-15" />
           <div className="relative mx-auto grid max-w-6xl gap-8 px-4 py-10 md:grid-cols-2 md:py-16">
             <div>
               <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-primary-foreground/15 px-3 py-1 text-sm font-bold">
-                <Stars /> 4.9 no Google · +530 avaliações
+                <Stars /> 4.9 no Google · 536 avaliações
               </p>
               <h1 className="text-3xl font-extrabold leading-tight md:text-5xl">Precisando de remédios ou produtos de higiene sem sair de casa em Caruaru?</h1>
               <p className="mt-4 text-lg opacity-95">Peça pelo WhatsApp e receba em minutos no Vassoural e região com os melhores preços!</p>
