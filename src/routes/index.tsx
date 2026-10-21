@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Search, MessageCircle, Clock, MapPin, Phone, Star, Truck, Accessibility, CreditCard, Zap,
   Pill, Droplets, Sparkles, Baby, Cross, ChevronLeft, ChevronRight, Navigation, Tag,
@@ -48,7 +48,7 @@ function WaButton({ children, msg, className = "" }: { children: React.ReactNode
 
 const banners = [
   { icon: Truck, title: "Delivery Super Rápido em Caruaru", text: "Receba em minutos no Vassoural e região." },
-  { icon: Tag, title: "Ofertas do Mês", text: "Medicamentos e cosméticos com o menor preço." },
+  { icon: Tag, title: "Sempre com o Menor Preço", text: "Medicamentos, higiene e cosméticos com preço justo." },
   { icon: MessageCircle, title: "Atendimento Humanizado", text: "Fale direto com nossos atendentes, sem robô." },
 ];
 
@@ -60,23 +60,12 @@ const categories = [
   { icon: Cross, name: "Primeiros Socorros & Equipamentos" },
 ];
 
-const offers = [
-  { name: "Dipirona 500mg — 10 comp.", old: 8.9, price: 4.99, cat: "Medicamentos" },
-  { name: "Protetor Solar FPS 50 — 120ml", old: 69.9, price: 49.9, cat: "Dermo" },
-  { name: "Fralda Infantil Pacote G", old: 64.9, price: 47.9, cat: "Infantil" },
-  { name: "Creme Dental Kit c/ 3", old: 17.9, price: 11.99, cat: "Higiene" },
-  { name: "Vitamina C 1g — 30 comp.", old: 39.9, price: 26.9, cat: "Medicamentos" },
-  { name: "Termômetro Digital", old: 34.9, price: 22.9, cat: "Equipamentos" },
-];
-
 const reviews = [
   { name: "Marina", text: "Sempre que preciso sou bem atendida. Os preços são bons e a ótima entrega." },
   { name: "Cleyton", text: "Muito bom atendimento, já sou cliente há anos e sempre supre minhas necessidades." },
   { name: "Érika", text: "A melhor farmácia do mundo e o atendimento também excelente!" },
   { name: "Alice", text: "Compro tudo pelo WhatsApp. Meus agradecimentos à equipe!" },
 ];
-
-const brl = (n: number) => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
 function Stars({ size = "h-4 w-4" }: { size?: string }) {
   return <span className="inline-flex">{[0,1,2,3,4].map(i => <Star key={i} className={`${size} fill-star text-star`} />)}</span>;
@@ -93,14 +82,10 @@ function Index() {
     return () => clearInterval(t);
   }, []);
 
-  const filtered = useMemo(
-    () => offers.filter(o => o.name.toLowerCase().includes(q.toLowerCase()) || o.cat.toLowerCase().includes(q.toLowerCase())),
-    [q],
-  );
-
   const onSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    document.getElementById("ofertas")?.scrollIntoView();
+    const term = q.trim();
+    window.open(wa(term ? `Olá! Vim pelo site da LFarma. Vocês têm ${term}?` : DEFAULT_MSG), "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -179,37 +164,6 @@ function Index() {
           </div>
         </section>
 
-        {/* OFERTAS */}
-        <section id="ofertas" className="scroll-mt-32 bg-secondary py-12">
-          <div className="mx-auto max-w-6xl px-4">
-            <div className="flex items-end justify-between gap-3">
-              <h2 className="text-2xl font-extrabold md:text-3xl">🔥 Ofertas Imbatíveis do Dia</h2>
-              {q && <button onClick={() => setQ("")} className="text-sm font-bold text-primary">Limpar busca</button>}
-            </div>
-            <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-3">
-              {filtered.map(o => {
-                const off = Math.round((1 - o.price / o.old) * 100);
-                return (
-                  <article key={o.name} className="relative flex flex-col rounded-2xl bg-card p-4 shadow-card">
-                    <span className="absolute right-3 top-3 rounded-full bg-star px-2 py-0.5 text-xs font-extrabold text-star-foreground">-{off}%</span>
-                    <span className="text-xs font-bold uppercase text-primary">{o.cat}</span>
-                    <h3 className="mt-1 flex-1 pr-8 font-sans text-sm font-bold md:text-base">{o.name}</h3>
-                    <p className="mt-3 text-sm text-muted-foreground line-through">{brl(o.old)}</p>
-                    <p className="text-2xl font-extrabold text-primary">{brl(o.price)}</p>
-                    <WaButton msg={`Olá! Vim pelo site da LFarma e gostaria de pedir: ${o.name} por ${brl(o.price)}.`} className="mt-3 px-3 py-2.5 text-sm">Pedir no WhatsApp</WaButton>
-                  </article>
-                );
-              })}
-            </div>
-            {filtered.length === 0 && (
-              <div className="mt-5 rounded-2xl bg-card p-6 text-center">
-                <p className="font-bold">Não encontrou "{q}" aqui? Temos muito mais na loja!</p>
-                <WaButton msg={`Olá! Vim pelo site da LFarma. Vocês têm ${q}?`} className="mt-4">Perguntar no WhatsApp</WaButton>
-              </div>
-            )}
-            <p className="mt-4 text-xs text-muted-foreground">Preços promocionais sujeitos à disponibilidade. Medicamentos: siga a orientação médica.</p>
-          </div>
-        </section>
 
         {/* PROVA SOCIAL */}
         <section className="mx-auto max-w-6xl px-4 py-12">
@@ -290,7 +244,7 @@ function Index() {
             <p className="opacity-80">{ADDRESS}</p>
           </div>
           <nav className="flex flex-col gap-2 opacity-90">
-            <a href="#categorias">Categorias</a><a href="#ofertas">Ofertas do Dia</a><a href="#localizacao">Como Chegar</a>
+            <a href="#categorias">Categorias</a><a href="#localizacao">Como Chegar</a>
           </nav>
           <div className="flex flex-col gap-2 opacity-90">
             <span>Política de Privacidade</span><span>Política de Entrega e Trocas</span>
