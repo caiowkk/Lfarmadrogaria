@@ -4,7 +4,7 @@ import {
   Search, MessageCircle, Clock, MapPin, Phone, Star, Truck, Accessibility, CreditCard, Zap,
   Pill, Droplets, Sparkles, Baby, Cross, ChevronLeft, ChevronRight, Navigation, Tag,
 } from "lucide-react";
-import loja from "@/assets/loja-lfarma.jpg.asset.json";
+const loja = { url: "/images/loja-lfarma.jpg" };
 
 const PHONE = "5581992098314";
 const DEFAULT_MSG = "Olá! Vim pelo site da LFarma e gostaria de tirar uma dúvida/fazer um pedido.";
